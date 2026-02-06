@@ -1,35 +1,42 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 function Login() {
+  const dialogRef = useRef(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  // Function to handle form submit
   const onSubmit = (data) => {
     console.log("Login Data:", data);
     alert("Login successful!");
+
+    // ✅ Close modal
+    dialogRef.current?.close();
   };
 
   return (
     <div>
-      <dialog id="my_modal_3" className="modal" >
+      <dialog
+        id="my_modal_3"
+        ref={dialogRef}
+        className="modal"
+      >
         <div className="modal-box">
-          {/* Close button */}
           <Link
             to="/"
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            onClick={() => dialogRef.current?.close()}
           >
             ✕
           </Link>
 
           <h3 className="font-bold text-lg mb-4 ml-2">Login</h3>
 
-          {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
               <label className="label">Email</label>
@@ -61,6 +68,7 @@ function Login() {
                 >
                   Login
                 </button>
+
                 <p className="mt-3">
                   Don’t have an account?{" "}
                   <Link
