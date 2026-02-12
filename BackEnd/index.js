@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import getBook from './controller/book.controller.js'
 import cors from "cors"
-import router from "./route/user.route.js"
+import UserRouter from "./route/user.route.js"
 
 let app=express()
 dotenv.config()
@@ -29,7 +29,7 @@ database()
 
 
 app.use('/book',getBook)
-app.use('/',router);
+app.use('/user',UserRouter);
 
 app.get('/',(req,res)=>{
     res.send('hello world')

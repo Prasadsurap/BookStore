@@ -1,5 +1,5 @@
 import React from "react";
-import Bannerimg from "../../../public/Bannerimg.jpg";
+import Bannerimg from "/Bannerimg.jpg";
 import { Fade } from "react-awesome-reveal";
 
 function Banner() {
